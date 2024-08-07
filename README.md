@@ -5,4 +5,3 @@ Features:
 -Add and subtract numbers effortlessly.<br>
 -Multiply and divide with ease.<br>
 -Clear button to reset calculations.<br>
--Made for desktop and mobile.<br>
