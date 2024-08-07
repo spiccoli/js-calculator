@@ -45,4 +45,16 @@ button:hover {
     background-color: hsl(0, 0%, 68%);
     transform: scale(1.02)
 }
-
+.clearDisplay {
+    background-color: hsl(0, 0%, 55%);
+    color: black;
+}
+.clearDisplay:hover {
+    background-color: hsl(0, 0%, 79%);
+}
+.operator {
+    background-color: hsl(35, 100%, 50%)
+}
+.operator:hover {
+    background-color: hsl(35, 100%, 66%)
+}
