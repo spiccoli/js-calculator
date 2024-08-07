@@ -2,7 +2,7 @@
 <br>
 Features:
 <br>
--Add and subtract numbers<br>
+-Add and subtract numbers.<br>
 -Multiply and divide.<br>
 -Clear button to reset calculations.<br>
 TODO:<br>
