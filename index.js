@@ -1,56 +1,51 @@
+// Get the display element from the HTML
 const display = document.getElementById("htmldisplay");
-const historyDisplay = document.getElementById("historyDisplay"); // FUTURE element in html
 
-let memory = 0; // FUTURE Initialize memory
+// Initialize memory to zero
+let memory = 0;
 
-// Automatically clear the display if it shows an error or is undefined
-setInterval(errorCheck, 700);
-
-function errorCheck() {
-    if (display.value === "Error" || display.value === undefined) {
-        clearDisplay();
-    }
-}
-
+// Function to insert a character into the display
 function insertToDisplay(character) {
     display.value += character;
     display.scrollLeft = display.scrollWidth;
 }
 
+// Function to clear the display
 function clearDisplay() {
     display.value = "";
 }
 
-function calculate(addToMemory) {
-  try {
-      const result = eval(display.value);
-      if (Math.abs(result) >= 1e7) {
-          // Convert to scientific notation with 2 decimal places
-          display.value = result.toExponential(2);
-      } else {
-          display.value = result;
-      }
-      // Scroll to the end of the input after calculation
-      display.scrollLeft = display.scrollWidth;
+// Function to perform the calculation
+function calculate() {
+    try {
+        const result = eval(display.value); // Evaluate the expression
+        if (Math.abs(result) >= 1e7) {
+            // Convert to scientific notation with 2 decimal places
+            display.value = result.toExponential(2);
+        } else {
+            display.value = result;
+        }
+        // Scroll to the end of the input after calculation
+        display.scrollLeft = display.scrollWidth;
 
-      // Add the result to the calculation history
-      historyDisplay.textContent += `${display.value}\n`;
-
-  } catch (error) {
-      display.value = "Error";
-  }
+        // Store the result in memory
+        addToMemory(result);
+    } catch (error) {
+        display.value = "Error"; // Display an error message
+    }
 }
 
+// Function to handle backspace key
 function handleBackspace() {
     // Remove the last character from the display
     display.value = display.value.slice(0, -1);
 }
+
 // Listen for Backspace or Delete key presses
 document.addEventListener("keydown", (event) => {
     if (event.key === "Backspace" || event.key === "Delete") {
         handleBackspace();
     }
-    // Add more keyboard shortcuts here (Ctrl+C, Ctrl+Enter, etc.)
 });
 
 
