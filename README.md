@@ -2,7 +2,7 @@
 <br>
 Features:
 <br>
--Add and subtract numbers effortlessly.
--Multiply and divide with ease.
--Clear button to reset calculations.
--Made for desktop and mobile.
+-Add and subtract numbers effortlessly.<br>
+-Multiply and divide with ease.<br>
+-Clear button to reset calculations.<br>
+-Made for desktop and mobile.<br>
