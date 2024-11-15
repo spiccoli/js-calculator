@@ -18,27 +18,39 @@ function clearDisplay() {
 // Function to perform the calculation
 function calculate() {
     try {
-        const result = eval(display.value); // Evaluate the expression
-        if (Math.abs(result) >= 1e7) {
-            // Convert to scientific notation with 2 decimal places
-            display.value = result.toExponential(2);
-        } else {
-            display.value = result;
-        }
-        // Scroll to the end of the input after calculation
-        display.scrollLeft = display.scrollWidth;
+        const expression = display.value;
+        // Ensure the expression is not empty
+        if (expression) {
+            const result = evaluateExpression(expression);
+            display.value = formatResult(result);
+            // Scroll to the end of the input after calculation
+            display.scrollLeft = display.scrollWidth;
 
-        // Store the result in memory
-        addToMemory(result);
+            // Store the result in memory
+            memory = result;
+        }
     } catch (error) {
         display.value = "Error"; // Display an error message
     }
 }
 
+// Safe function to evaluate the expression
+function evaluateExpression(expression) {
+    const sanitizedExpression = expression.replace(/[^-()\d/*+.]/g, ''); // Sanitize input
+    return Function(`'use strict'; return (${sanitizedExpression})`)();
+}
+
+// Function to format the result
+function formatResult(result) {
+    if (Math.abs(result) >= 1e7) {
+        return result.toExponential(2); // Convert to scientific notation with 2 decimal places
+    }
+    return result;
+}
+
 // Function to handle backspace key
 function handleBackspace() {
-    // Remove the last character from the display
-    display.value = display.value.slice(0, -1);
+    display.value = display.value.slice(0, -1); // Remove the last character from the display
 }
 
 // Listen for Backspace or Delete key presses
